@@ -1,0 +1,144 @@
+<div id="body">
+  <div id="wrapper">
+    <div [class.dsp-hide]="isPreview()" [class.dsp-show]="!isPreview()">
+      <app-header title="ایجاد درخواست جدید" />
+
+      <mat-stepper (selectionChange)="setError($event.selectedIndex)" dir="rtl" aria-label="Editable stepper"
+        class="custom-stepper" linear #stepper>
+
+        <ng-template matStepperIcon="number" let-index="index">
+          {{ index + 1 }}
+        </ng-template>
+
+        <ng-template matStepperIcon="edit" let-index="index">
+          {{ index + 1 }}
+        </ng-template>
+
+        <ng-template matStepperIcon="done" let-index="index">
+          {{ index + 1 }}
+        </ng-template>
+
+
+        <mat-step [completed]="isStepOneCompleted()">
+          <app-input-label [(selectedDate)]="selectedDate" [inputType]="inputType.date" labelTitle="تاریخ"
+            inputIcon="calendar_month" />
+          <app-input-label [(timeValue)]="timeValue" [inputType]="inputType.time" labelTitle="زمان"
+            inputIcon="schedule" />
+          <app-input-label [(dropdownValue)]="locationValue" [inputType]="inputType.select"
+            [dropdownOptions]="[location.title]" labelTitle="مکان" inputIcon="arrow_back_iOS" />
+          <div class="footer-btn">
+            <app-custom-button (click)="nextStep(stepper,1)" [buttonType]="buttonType.next" />
+          </div>
+        </mat-step>
+        <mat-step [completed]="isStepTwoCompleted()">
+          <app-input-label [(dropdownValue)]="guestLevel" [inputType]="inputType.select"
+            [dropdownOptions]="['مدیر','کارشناس','مدیر بازاریابی','کارشناس UI/UX']" labelTitle="سطح سازمانی میهمان"
+            inputIcon="arrow_back_iOS" />
+          <div class="footer-btn">
+            <app-custom-button (click)="nextStep(stepper,2)" [buttonType]="buttonType.next" />
+            <app-custom-button (click)="preStep(stepper)" [buttonType]="buttonType.previous" />
+          </div>
+        </mat-step>
+        <mat-step [completed]="isStepThreeCompleted()">
+          <app-input-label [(checkBoxesValues)]="checkBoxesValues" [inputType]="inputType.checkbox"
+            labelTitle="امکانات درخواستی" />
+          <app-input-label [(textInputValue)]="explanation" [inputType]="inputType.text" labelTitle="توضیحات"
+            inputIcon="attach_file_add" textInputPlaceholder="لطفا توضیح دهید..." />
+          <div class="footer-btn">
+            <app-custom-button (click)="nextStep(stepper,3)" [buttonType]="buttonType.next" />
+            <app-custom-button (click)="preStep(stepper)" [buttonType]="buttonType.previous" />
+          </div>
+        </mat-step>
+        <mat-step [completed]="isStepFourCompleted()">
+          <app-input-label [(guestList)]="guestList" [inputType]="inputType.modal" labelTitle="نام میهمانان"
+            textInputPlaceholder="لطفا نام میهمانان را وارد نمایید" />
+          <app-input-label [(textInputValue)]="hostName" [inputType]="inputType.text" labelTitle="نام میزبان"
+            textInputPlaceholder="لطفا نام میزبان را وارد نمایید" />
+          <app-input-label [setTypeToNumber]="true" [(textInputValue)]="guestNumbers" [inputType]="inputType.text"
+            labelTitle="تعداد میهمانان" textInputPlaceholder="لطفا تعداد میهمانان را وارد نمایید" />
+          <div class="footer-btn">
+            <app-custom-button (click)="preview(4)" [buttonType]="buttonType.preview" />
+            <app-custom-button (click)="preStep(stepper)" [buttonType]="buttonType.previous" />
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </div>
+
+
+
+    <div [class.dsp-hide]="!isPreview()" [class.dsp-show]="isPreview()">
+      <app-header title="فرم درخواست شما" />
+
+      <div id="previewForm">
+        <div id="layout">
+          <mat-icon class="material-symbols-rounded filled-icon">edit</mat-icon>
+          <span>MC-122 فرم شماره</span>
+        </div>
+        <div class="row-wrapper">
+          <div class="row">
+            <span>{{timeValue()}} ساعت</span>
+            <span>{{dateValue()}}</span>
+            <mat-icon class="material-symbols-rounded filled-icon">calendar_clock</mat-icon>
+          </div>
+        </div>
+        <div class="row-wrapper bgc-blue">
+          <div class="row">
+            <span>{{locationValue()}}</span>
+            <mat-icon class="material-symbols-rounded filled-icon">location_on</mat-icon>
+          </div>
+          <div class="sub-row">
+            <span>{{location.address}}</span>
+          </div>
+        </div>
+        <div class="row-wrapper">
+          <div class="row">
+            <div class="fix-farsi">
+              <span>{{guestNumbers()}}</span>
+              <span>نفر مهمان</span>
+            </div>
+            <mat-icon class="material-symbols-rounded filled-icon">3p</mat-icon>
+          </div>
+          <div class="sub-row flex-sub-row">
+            <div>{{guestLevel()}}</div>
+            <div>@for (guest of guestList(); track $index) {
+              <span>{{guest}}</span>
+              }
+            </div>
+          </div>
+          <div class="bottomLine"></div>
+        </div>
+        <div class="row-wrapper pdt-none">
+          <div class="row">
+            <span>میزبان</span>
+            <mat-icon class="material-symbols-rounded filled-icon">gite</mat-icon>
+          </div>
+          <div class="sub-row">
+            <span>{{hostName()}}</span>
+          </div>
+        </div>
+        <div class="row-wrapper bgc-blue bottom-row">
+          <div class="row">
+            <div class="reverse">
+              <span>{{checkBoxesValue()}}</span>
+            </div>
+            <mat-icon class="material-symbols-rounded filled-icon">gite</mat-icon>
+          </div>
+          <div class="sub-row explanation">
+            <span>
+              <mat-icon class="material-symbols-rounded filled-icon">attach_file</mat-icon>
+              {{explanation()}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-btn">
+        <app-custom-button (click)="previewFormPreStep()" [buttonType]="buttonType.previous" />
+        <app-custom-button (click)="onSubmit()" [buttonType]="buttonType.submit" />
+      </div>
+    </div>
+    <p class="error" [class.dsp-hide]="!isErrorDisplay()" [class.dsp-show]="isErrorDisplay()">لطفا فرم را کامل پر کنید
+    </p>
+  </div>
+</div>
+
+<router-outlet />

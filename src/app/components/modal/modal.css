@@ -1,0 +1,66 @@
+#modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(100, 160, 130, 0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+#modal {
+  width: 450px;
+  height: 400px;
+  background-color: rgb(40, 100, 140);
+  z-index: 10;
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+}
+.show {
+  display: flex !important;
+}
+.footer-btn {
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px 35px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
+#guest-list {
+  width: 330px;
+  height: 160px;
+  margin-inline: auto;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+  padding: 20px;
+  background-color: #fff;
+  overflow: auto;
+  color: #1c6b8a;
+}
+#guest-list > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+#guest-list > div mat-icon {
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#guest-list > div mat-icon:hover {
+  color: #8a1c1c;
+}

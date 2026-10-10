@@ -1,0 +1,157 @@
+#wrapper {
+  width: 393px;
+  height: 852px;
+  border: 3px solid black;
+  padding: 15px;
+  position: relative;
+}
+.footer-btn {
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #ebedff;
+  border-radius: 15px 15px 0 0;
+  padding: 30px 35px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+#body {
+  width: 98vw;
+  font-family: 'IRANSans', Roboto, sans-serif !important;
+  display: flex;
+  justify-content: center;
+  align-items: centers;
+}
+
+#previewForm {
+  width: 330px;
+  height: fit-content;
+  margin: auto;
+  border: 2px solid #b5c4ff;
+  border-radius: 10px;
+  position: relative;
+  padding-top: 57px;
+}
+#layout {
+  width: 100%;
+  height: 57px;
+  background-color: #e3e7ff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 20px;
+  color: #405aa9;
+  font-family: 'IRANSans', Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+}
+#layout span {
+  color: #264190;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 15px;
+  color: #405aa9;
+  font-size: 15px;
+  font-weight: 600;
+}
+.row mat-icon {
+  color: #748de0;
+}
+.bgc-blue {
+  background-color: #f3f3fd;
+}
+.sub-row {
+  width: 100%;
+  padding-right: 40px;
+  text-align: end;
+  color: #405aa9;
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 10px;
+}
+.row-wrapper {
+  padding: 20px 15px 20px 0;
+}
+.flex-sub-row {
+  max-height: 80px;
+  display: flex;
+  justify-content: end;
+  align-items: start;
+  gap: 30px;
+  overflow: auto;
+}
+.flex-sub-row div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
+  gap: 5px;
+  margin-top: 10px;
+}
+.bottomLine {
+  width: 70%;
+  height: 20px;
+  margin: 0 0 0 60px;
+  border-bottom: 1px solid #b5c4ff;
+}
+.pdt-none {
+  padding-top: 0;
+}
+.reverse {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+}
+
+.bottom-row {
+  border-radius: 0 0 10px 10px;
+}
+.explanation {
+  position: relative;
+}
+.explanation mat-icon {
+  color: #b5c4ff;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 20px;
+  top: -5px;
+}
+
+.dsp-hide {
+  display: none;
+}
+
+.dsp-show {
+  display: block;
+}
+
+.fix-farsi {
+  display: flex;
+  flex-flow: row-reverse;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.error {
+  color: red;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 105px;
+  right: 0;
+}

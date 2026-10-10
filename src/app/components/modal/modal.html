@@ -1,0 +1,19 @@
+<div (click)="closeModal()" id="modal-wrapper" [class.show]="isActive()">
+    <div id="modal" (click)="$event.stopPropagation()">
+        <app-input-label (enterOutput)="addGuest()" #theInput [(textInputValue)]="inputValue"
+            [inputType]="inputType.text" labelTitle="" textInputPlaceholder="لطفا نام میهمانان را وارد نمایید" />
+        <div id="guest-list">
+            @for (item of guestList(); track $index) {
+            <div>
+                <span>{{item}}</span>
+                <mat-icon (click)="removeGuest($index)" class="material-symbols-rounded"
+                    [class.filled-icon]="true">delete</mat-icon>
+            </div>
+            }
+        </div>
+        <div class="footer-btn">
+            <app-custom-button (click)="addGuest(); theInput.focusInput()" [buttonType]="buttonType.add" />
+            <app-custom-button (click)="closeModal()" [buttonType]="buttonType.cancel" />
+        </div>
+    </div>
+</div>

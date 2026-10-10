@@ -1,0 +1,8 @@
+@for (item of checkBox(); track item.id) {
+<div id="checkbox" (click)="onSelect(item.id)">
+    <div class="icon" [class.icon-hover]="!item.selected" [class.select]="item.selected">
+        <mat-icon class="material-symbols-rounded filled-icon">{{item.iconName}}</mat-icon>
+    </div>
+    <span>{{item.text}}</span>
+</div>
+}

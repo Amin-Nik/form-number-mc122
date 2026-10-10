@@ -1,0 +1,70 @@
+<div id="wrapper">
+    @switch (inputType()) {
+    @case ("date") {
+    <label>{{labelTitle()}}</label>
+    <div id="input-wrapper">
+        <mat-icon class="material-symbols-rounded" [class.filled-icon]="filledIcon()">{{inputIcon()}}</mat-icon>
+        <div>
+            <input placeholder="روز / ماه / سال" type="text" #myInput #cal="cyrusCalendar" class="form-control"
+                cyrus-calendar [calendar-type]="DatePickerType.Shamsi" autocomplete="off" inputmode="none" />
+            <calendar-popup [input]="myInput" [directive]="cal" [(ngModel)]="selectedDate">
+            </calendar-popup>
+        </div>
+    </div>
+    }
+    @case ("time"){
+    <label>{{labelTitle()}}</label>
+    <div id="input-wrapper">
+        <mat-icon class="material-symbols-rounded" [class.filled-icon]="filledIcon()">{{inputIcon()}}</mat-icon>
+        <div>
+            <input [(ngModel)]="timeValue" class="cursor-text" mask="Hh:m0" [dropSpecialCharacters]="false"
+                placeholder="دقیقه : ساعت">
+        </div>
+    </div>
+    }
+    @case ("select") {
+    <label>{{labelTitle()}}</label>
+    <div id="input-wrapper">
+        <mat-icon class="material-symbols-rounded" [class.filled-icon]="filledIcon()">{{inputIcon()}}</mat-icon>
+        <div>
+            <select id="dropdown" [(ngModel)]="dropdownValue" [class.placeholder]="dropdownValue()">
+                <option value="" disabled selected>لطفا انتخاب کنید</option>
+
+                @for (option of dropdownOptions(); track $index) {
+                <option [value]="option">{{option}}</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    }
+    @case ("checkbox") {
+    <label>{{labelTitle()}}</label>
+    <app-custom-checkbox [(checkBoxesValues)]="checkBoxesValues" id="checkbox-wrapper" />
+    }
+    @case ("text") {
+    <label>{{labelTitle()}}</label>
+    <div id="input-wrapper">
+        <mat-icon class="material-symbols-rounded" [class.filled-icon]="filledIcon()">{{inputIcon()}}</mat-icon>
+        <div>
+            <input (keydown.enter)="onEnter()" #theInput [(ngModel)]="textInputValue" id="txt" class="cursor-text"
+                [type]="setTypeToNumber()? 'number' : 'text'" [placeholder]="textInputPlaceholder()">
+        </div>
+    </div>
+    }
+    @case ("modal") {
+    <label>{{labelTitle()}}</label>
+    <div id="input-wrapper">
+        <div>
+            <button (click)="openModal()" id="btn">
+                @if (guestList().length === 0) {
+                {{textInputPlaceholder()}}
+                }@else {{{guestList().join(" - ")}}}
+            </button>
+            <app-modal [(guestList)]="guestList" [(isActive)]="isAddGuestOpen" />
+        </div>
+    </div>
+    }
+    @default {}
+    }
+</div>

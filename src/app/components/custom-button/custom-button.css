@@ -1,0 +1,34 @@
+#btn {
+  width: 140px;
+  height: 45px;
+  font-size: 13px;
+  font-weight: 400;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'IRANSans', Roboto, sans-serif !important;
+}
+.next {
+  background-color: #00164d;
+  color: #fff;
+}
+.previous {
+  background-color: #b5c4ff;
+  color: #00164d;
+}
+.preview {
+  background-color: #5a73c4;
+  color: #fff;
+}
+.submit {
+  background-color: #669bbc;
+  color: #fff;
+}
+.add {
+  background-color: #6fbc66;
+  color: #fff;
+}
+.cancel {
+  background-color: #f19999;
+  color: #fff;
+}
