@@ -28,7 +28,7 @@
 
 #previewForm {
   width: 330px;
-  height: fit-content;
+  max-height: 560px;
   margin: auto;
   border: 2px solid #b5c4ff;
   border-radius: 10px;
@@ -110,9 +110,16 @@
   padding-top: 0;
 }
 .reverse {
+  width: 100%;
   display: flex;
   flex-direction: row-reverse;
   gap: 5px;
+}
+.reverse span {
+  width: 90%;
+  height: 22px;
+  text-align: end;
+  overflow-y: scroll;
 }
 
 .bottom-row {
