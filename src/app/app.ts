@@ -21,28 +21,18 @@ export class App {
   isPreview = signal<boolean>(false);
 
   isStepOneCompleted = computed(() => {
-    if (this.dateValue()?.trim() && this.timeValue()?.trim() && this.locationValue()?.trim()) {
-      return true;
-    } else return false;
+    return !!(this.dateValue()?.trim() && this.timeValue()?.trim() && this.locationValue()?.trim());
   });
   isStepTwoCompleted = computed(() => {
-    if (this.guestLevel()?.trim()) {
-      return true;
-    } else return false;
+    return !!this.guestLevel()?.trim();
   });
   isStepThreeCompleted = computed(() => {
-    if (
-      this.guestLevel()?.trim() &&
+    return !!(this.guestLevel()?.trim() &&
       this.checkBoxesValues()?.length !== 0 &&
-      this.explanation()?.trim()
-    ) {
-      return true;
-    } else return false;
+      this.explanation()?.trim());
   });
   isStepFourCompleted = computed(() => {
-    if (this.guestList()?.length !== 0 && this.hostName()?.trim() && this.guestNumbers()?.trim()) {
-      return true;
-    } else return false;
+    return !!(this.guestList()?.length !== 0 && this.hostName()?.trim() && this.guestNumbers()?.trim());
   });
 
   selectedDate = signal(undefined);
